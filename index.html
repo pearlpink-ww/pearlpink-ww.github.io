@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Глобализация и национальная идентичность</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --gold: #C9A84C;
+  --dark: #0F0E0B;
+  --cream: #F5F0E8;
+  --muted: #6B6558;
+  --accent: #1A3A2A;
+  --card-bg: #FDFAF4;
+  --border: rgba(201,168,76,0.25);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--dark); color: var(--cream); font-family: 'Nunito', sans-serif; font-weight: 300; line-height: 1.7; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(15,14,11,0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.05em; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: var(--cream); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.2s; }
+.nav-links a:hover { opacity: 1; color: var(--gold); }
+
+/* HERO */
+#hero {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 6rem 2rem 4rem;
+  background: radial-gradient(ellipse at 50% 60%, #1A3A2A 0%, #0F0E0B 65%);
+  position: relative; overflow: hidden;
+}
+.hero-ornament {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.1);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  animation: spin 40s linear infinite;
+}
+.hero-ornament::after {
+  content: ''; position: absolute; inset: 40px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.07);
+}
+@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.hero-tag {
+  font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem; opacity: 0.9;
+}
+h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: 1.15; margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #F5F0E8 0%, #C9A84C 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub { font-size: 1.1rem; color: var(--muted); margin-bottom: 2.5rem; font-style: italic; font-family: 'Playfair Display', serif; }
+.hero-desc { max-width: 600px; font-size: 0.95rem; color: rgba(245,240,232,0.65); margin-bottom: 3rem; }
+.btn-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.btn {
+  padding: 0.75rem 2rem; border-radius: 2px; font-size: 0.85rem;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  transition: all 0.25s; font-family: 'Nunito', sans-serif; font-weight: 600;
+}
+.btn-gold { background: var(--gold); color: var(--dark); border: 1px solid var(--gold); }
+.btn-gold:hover { background: transparent; color: var(--gold); }
+.btn-outline { background: transparent; color: var(--cream); border: 1px solid rgba(245,240,232,0.3); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* SECTION BASE */
+section { padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+.section-lead { color: rgba(245,240,232,0.6); max-width: 640px; margin-bottom: 3rem; }
+.divider { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+
+/* GLOBALIZATION */
+#globalization { background: var(--dark); }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.step-card {
+  background: rgba(245,240,232,0.04); border: 1px solid var(--border);
+  border-radius: 4px; padding: 2rem;
+  transition: border-color 0.25s, background 0.25s;
+}
+.step-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+.step-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); opacity: 0.3; margin-bottom: 0.5rem; }
+.step-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem; }
+.step-text { font-size: 0.88rem; color: rgba(245,240,232,0.55); line-height: 1.6; }
+
+/* IDENTITY */
+#identity { background: #0D0D09; }
+.id-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+@media(max-width:700px){ .id-grid { grid-template-columns: 1fr; } }
+.id-visual { position: relative; }
+.ring-wrap { display: flex; align-items: center; justify-content: center; }
+.rings svg { max-width: 300px; width: 100%; }
+.id-points { list-style: none; }
+.id-points li {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.id-points li:last-child { border-bottom: none; }
+.id-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(201,168,76,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+.id-label { font-weight: 600; font-size: 0.8rem; margin-bottom: 0.15rem; color: var(--gold); }
+.id-desc { color: rgba(245,240,232,0.5); font-size: 0.82rem; }
+
+/* CONFLICT vs SYNTHESIS */
+#conflict { background: var(--dark); }
+.vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+@media(max-width:650px){ .vs-grid { grid-template-columns: 1fr; } }
+.vs-card { border-radius: 4px; padding: 2rem; }
+.vs-conflict { background: rgba(139,35,35,0.12); border: 1px solid rgba(180,60,60,0.25); }
+.vs-synthesis { background: rgba(26,58,42,0.2); border: 1px solid rgba(60,140,80,0.25); }
+.vs-badge {
+  display: inline-block; padding: 0.3rem 0.9rem; border-radius: 2px;
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 1.2rem;
+}
+.badge-red { background: rgba(180,60,60,0.2); color: #E06060; border: 1px solid rgba(180,60,60,0.3); }
+.badge-green { background: rgba(60,140,80,0.2); color: #6DC48A; border: 1px solid rgba(60,140,80,0.3); }
+.vs-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem; }
+.vs-list { list-style: none; }
+.vs-list li { padding: 0.5rem 0; font-size: 0.88rem; color: rgba(245,240,232,0.6); border-bottom: 1px solid rgba(245,240,232,0.07); }
+.vs-list li::before { content: '— '; color: var(--gold); }
+
+/* COUNTRIES */
+#countries { background: #0D0D09; }
+.country-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.country-card {
+  background: rgba(245,240,232,0.03); border: 1px solid var(--border);
+  border-radius: 4px; padding: 1.75rem; cursor: pointer;
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+.country-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.country-card:hover::before { transform: scaleX(1); }
+.country-card:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.4); }
+.country-flag { font-size: 2rem; margin-bottom: 0.75rem; }
+.country-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.25rem; }
+.country-model {
+  display: inline-block; font-size: 0.7rem; padding: 0.2rem 0.7rem;
+  border-radius: 20px; margin-bottom: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.model-synthesis { background: rgba(60,140,80,0.15); color: #6DC48A; border: 1px solid rgba(60,140,80,0.2); }
+.model-conflict { background: rgba(180,60,60,0.15); color: #E06060; border: 1px solid rgba(180,60,60,0.2); }
+.model-mixed { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.2); }
+.model-resist { background: rgba(100,80,200,0.15); color: #A090E0; border: 1px solid rgba(100,80,200,0.2); }
+.country-text { font-size: 0.85rem; color: rgba(245,240,232,0.5); line-height: 1.6; }
+.country-fact { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--gold); font-style: italic; }
+
+/* ABOUT */
+#about { background: var(--dark); }
+.about-box {
+  background: rgba(201,168,76,0.06); border: 1px solid var(--border);
+  border-radius: 4px; padding: 3rem; max-width: 700px;
+}
+.about-row { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; align-items: flex-start; }
+.about-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); min-width: 130px; padding-top: 0.15rem; }
+.about-val { font-size: 0.92rem; color: rgba(245,240,232,0.8); }
+
+/* FOOTER */
+footer {
+  text-align: center; padding: 2.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem; color: var(--muted);
+}
+
+/* ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Глобализация &amp; Идентичность</div>
+  <div class="nav-links">
+    <a href="#globalization">Глобализация</a>
+    <a href="#identity">Идентичность</a>
+    <a href="#conflict">Конфликт/Синтез</a>
+    <a href="#countries">Страны</a>
+    <a href="#about">О проекте</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-ornament"></div>
+  <div class="hero-tag">Итоговый индивидуальный проект · 2025</div>
+  <h1>Глобализация<br>и национальная<br>идентичность</h1>
+  <div class="hero-sub">конфликт или синтез?</div>
+  <p class="hero-desc">Исследование взаимодействия двух ключевых явлений современного мира — глобальной интеграции и стремления народов сохранить свою самобытность.</p>
+  <div class="btn-row">
+    <a href="#globalization" class="btn btn-gold">Начать изучение</a>
+    <a href="#countries" class="btn btn-outline">Примеры стран</a>
+  </div>
+</section>
+
+<!-- GLOBALIZATION -->
+<section id="globalization">
+  <div class="container">
+    <div class="section-label fade-up">Раздел 1</div>
+    <h2 class="section-title fade-up">Что такое глобализация?</h2>
+    <div class="divider fade-up"></div>
+    <p class="section-lead fade-up">Процесс нарастающей взаимозависимости государств, народов и экономик, превращающий мир в единую систему.</p>
+
+    <div class="steps">
+      <div class="step-card fade-up">
+        <div class="step-num">I</div>
+        <div class="step-title">XV–XVIII вв. — Великие открытия</div>
+        <p class="step-text">Европейские державы установили трансконтинентальные торговые маршруты. Первый глобальный обмен товарами, культурой, болезнями.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">II</div>
+        <div class="step-title">XIX — нач. XX вв. — Промышленная волна</div>
+        <p class="step-text">Пар, железные дороги, телеграф. Массовая эмиграция в Северную Америку. Первый мировой рынок труда и капитала.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">III</div>
+        <div class="step-title">С 1945 г. — Современная эпоха</div>
+        <p class="step-text">ООН, ВТО, МВФ координируют государства. С 1990-х гг. интернет радикально ускоряет все процессы интеграции.</p>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem; margin-top:3rem;">
+      <div class="step-card fade-up" style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin-bottom:0.5rem;">7 000</div>
+        <div class="step-title">языков в мире</div>
+        <p class="step-text">Половина под угрозой исчезновения к концу XXI века (ЮНЕСКО)</p>
+      </div>
+      <div class="step-card fade-up" style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin-bottom:0.5rem;">70–80%</div>
+        <div class="step-title">рынка кино</div>
+        <p class="step-text">Доля голливудских фильмов во многих странах мира</p>
+      </div>
+      <div class="step-card fade-up" style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin-bottom:0.5rem;">190+</div>
+        <div class="step-title">стран-членов ВТО</div>
+        <p class="step-text">Единые правила международной торговли охватывают 98% товарооборота</p>
+      </div>
+      <div class="step-card fade-up" style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin-bottom:0.5rem;">5,4 млрд</div>
+        <div class="step-title">пользователей интернета</div>
+        <p class="step-text">Цифровое пространство объединяет две трети населения Земли</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section id="identity">
+  <div class="container">
+    <div class="section-label fade-up">Раздел 2</div>
+    <h2 class="section-title fade-up">Национальная идентичность</h2>
+    <div class="divider fade-up"></div>
+    <div class="id-grid">
+      <div class="fade-up">
+        <p style="color:rgba(245,240,232,0.6);font-size:0.92rem;margin-bottom:2rem;">Совокупность представлений человека о принадлежности к определённой нации — язык, историческая память, культурные традиции, ценности и символы.</p>
+        <ul class="id-points">
+          <li>
+            <div class="id-icon">🗺</div>
+            <div>
+              <div class="id-label">Объективный уровень</div>
+              <div class="id-desc">Общая территория, язык, история, правовые нормы — факты, поддающиеся измерению</div>
+            </div>
+          </li>
+          <li>
+            <div class="id-icon">❤</div>
+            <div>
+              <div class="id-label">Субъективный уровень</div>
+              <div class="id-desc">Осознание себя частью нации, эмоциональная привязанность к культурным образцам</div>
+            </div>
+          </li>
+          <li>
+            <div class="id-icon">🏛</div>
+            <div>
+              <div class="id-label">Символический уровень</div>
+              <div class="id-desc">Флаг, гимн, герб, государственные праздники и ритуалы сплочения</div>
+            </div>
+          </li>
+          <li>
+            <div class="id-icon">⚖</div>
+            <div>
+              <div class="id-label">Этническая vs гражданская</div>
+              <div class="id-desc">Две модели: на основе происхождения (этническая) или на основе общих прав и ценностей (гражданская)</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="id-visual fade-up ring-wrap">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+          <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+          <circle cx="150" cy="150" r="70" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+          <circle cx="150" cy="150" r="40" fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+          <text x="150" y="155" text-anchor="middle" fill="#C9A84C" font-size="10" font-family="Playfair Display, serif">Ядро</text>
+          <text x="150" y="127" text-anchor="middle" fill="rgba(245,240,232,0.5)" font-size="9" font-family="Nunito, sans-serif">язык</text>
+          <text x="150" y="175" text-anchor="middle" fill="rgba(245,240,232,0.5)" font-size="9" font-family="Nunito, sans-serif">традиции</text>
+          <text x="95" y="105" text-anchor="middle" fill="rgba(245,240,232,0.4)" font-size="9" font-family="Nunito, sans-serif">история</text>
+          <text x="205" y="105" text-anchor="middle" fill="rgba(245,240,232,0.4)" font-size="9" font-family="Nunito, sans-serif">символы</text>
+          <text x="80" y="155" text-anchor="middle" fill="rgba(245,240,232,0.35)" font-size="8" font-family="Nunito, sans-serif">ценности</text>
+          <text x="220" y="155" text-anchor="middle" fill="rgba(245,240,232,0.35)" font-size="8" font-family="Nunito, sans-serif">религия</text>
+          <text x="150" y="58" text-anchor="middle" fill="rgba(245,240,232,0.25)" font-size="8" font-family="Nunito, sans-serif">территория</text>
+          <text x="150" y="248" text-anchor="middle" fill="rgba(245,240,232,0.25)" font-size="8" font-family="Nunito, sans-serif">гражданство</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFLICT vs SYNTHESIS -->
+<section id="conflict">
+  <div class="container">
+    <div class="section-label fade-up">Раздел 3</div>
+    <h2 class="section-title fade-up">Конфликт или синтез?</h2>
+    <div class="divider fade-up"></div>
+    <p class="section-lead fade-up">Два взгляда на одну проблему. Истина — в понимании условий, при которых преобладает каждая из динамик.</p>
+    <div class="vs-grid">
+      <div class="vs-card vs-conflict fade-up">
+        <div class="vs-badge badge-red">Конфликт</div>
+        <h3>Глобализация угрожает</h3>
+        <ul class="vs-list">
+          <li>Культурный империализм Запада вытесняет местные традиции</li>
+          <li>Каждые 2 недели исчезает один язык мира</li>
+          <li>Brexit — реакция на утрату суверенитета</li>
+          <li>Транснациональные бренды разоряют местных производителей</li>
+          <li>Цифровые платформы формируют глобальные субкультуры вместо национальных</li>
+        </ul>
+      </div>
+      <div class="vs-card vs-synthesis fade-up">
+        <div class="vs-badge badge-green">Синтез</div>
+        <h3>Глобализация обогащает</h3>
+        <ul class="vs-list">
+          <li>«Глокализация»: глобальные явления адаптируются к местному контексту</li>
+          <li>Интернет помогает малым народам сохранять язык и культуру</li>
+          <li>K-pop, аниме — нацидентичность как глобальный экспорт</li>
+          <li>Диалог культур пробуждает интерес к собственной традиции</li>
+          <li>ЮНЕСКО охраняет нематериальное наследие 190+ стран</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step-card fade-up" style="margin-top:2rem;background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.3);">
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:0.75rem;color:var(--gold);">Вывод исследования</div>
+      <p style="font-size:0.9rem;color:rgba(245,240,232,0.7);line-height:1.7;">Глобализация и национальная идентичность не являются взаимоисключающими явлениями. Их взаимодействие принимает конфликтный или синтетический характер в зависимости от исторических условий, политики государства и активности гражданского общества. Народы, осознанно управляющие своим участием в глобальных процессах, способны не только сохранить, но и усилить собственную идентичность.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<section id="countries">
+  <div class="container">
+    <div class="section-label fade-up">Раздел 4</div>
+    <h2 class="section-title fade-up">Опыт стран мира</h2>
+    <div class="divider fade-up"></div>
+    <p class="section-lead fade-up">Конкретные примеры показывают, как разные государства выстраивают своё отношение к глобализации и идентичности.</p>
+    <div class="country-grid">
+      <div class="country-card fade-up">
+        <div class="country-flag">🇯🇵</div>
+        <div class="country-name">Япония</div>
+        <span class="country-model model-synthesis">Синтез</span>
+        <p class="country-text">Избирательная открытость: активное участие в мировой экономике при строгой защите культурной самобытности. Традиционные искусства — театр Но, чайная церемония, икебана — охраняются государством и входят в школьные программы.</p>
+        <div class="country-fact">«Япония берёт у мира технологии, оставляя себе душу» — формула успешного синтеза</div>
+      </div>
+      <div class="country-card fade-up">
+        <div class="country-flag">🇰🇷</div>
+        <div class="country-name">Южная Корея</div>
+        <span class="country-model model-synthesis">Синтез — экспорт идентичности</span>
+        <p class="country-text">Феномен «Халлю» (корейская волна): национальная культура стала глобальным экспортным продуктом. K-pop, корейские дорамы и кино завоевали мировую аудиторию.</p>
+        <div class="country-fact">«Паразиты» Пон Джун-хо — первый азиатский фильм, получивший «Оскар» за лучший фильм (2020 г.)</div>
+      </div>
+      <div class="country-card fade-up">
+        <div class="country-flag">🇫🇷</div>
+        <div class="country-name">Франция</div>
+        <span class="country-model model-synthesis">Культурный протекционизм</span>
+        <p class="country-text">40% эфирного времени на радио обязательно — французская музыка. Академия французского языка следит за чистотой нормы. Кино, гастрономия и мода — инструменты глобального влияния.</p>
+        <div class="country-fact">Закон Тубона (1994 г.) обязывает использовать французский язык в рекламе и официальных документах</div>
+      </div>
+      <div class="country-card fade-up">
+        <div class="country-flag">🇬🇧</div>
+        <div class="country-name">Великобритания</div>
+        <span class="country-model model-conflict">Конфликт</span>
+        <p class="country-text">Brexit — наглядный пример конфликта глобализации и национальной идентичности. 52% граждан проголосовали за выход из ЕС в 2016 г. под лозунгом «Верни контроль».</p>
+        <div class="country-fact">Выход из ЕС завершён в 2020 году. Споры о последствиях для экономики и идентичности продолжаются</div>
+      </div>
+      <div class="country-card fade-up">
+        <div class="country-flag">🇮🇳</div>
+        <div class="country-name">Индия</div>
+        <span class="country-model model-mixed">Смешанная модель</span>
+        <p class="country-text">IT-глобализация (Бангалор — «Силиконовая долина Азии») сочетается с сохранением тысячелетних традиций. Болливуд остаётся крупнейшей киноиндустрией мира по количеству фильмов.</p>
+        <div class="country-fact">Индия производит свыше 2 000 фильмов в год на 20+ языках — вдвое больше Голливуда</div>
+      </div>
+      <div class="country-card fade-up">
+        <div class="country-flag">🇲🇽</div>
+        <div class="country-name">Мексика</div>
+        <span class="country-model model-mixed">Смешанная модель</span>
+        <p class="country-text">Соседство с США создаёт мощное культурное давление, однако самобытная идентичность устойчива. День мёртвых (Día de los Muertos) — древняя традиция, ставшая мировым феноменом.</p>
+        <div class="country-fact">ЮНЕСКО включила праздник Día de los Muertos в список нематериального наследия человечества</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label fade-up">О проекте</div>
+    <h2 class="section-title fade-up">Информация о работе</h2>
+    <div class="divider fade-up"></div>
+    <div class="about-box fade-up">
+      <div class="about-row">
+        <div class="about-label">Тема</div>
+        <div class="about-val">Глобализация и национальная идентичность: конфликт или синтез?</div>
+      </div>
+      <div class="about-row">
+        <div class="about-label">Автор</div>
+        <div class="about-val">Харламов Александр Денисович, 10 «Б» класс</div>
+      </div>
+      <div class="about-row">
+        <div class="about-label">Руководитель</div>
+        <div class="about-val">Домрачева Ирина Фёдоровна</div>
+      </div>
+      <div class="about-row">
+        <div class="about-label">Учреждение</div>
+        <div class="about-val">МАОУ СОШ №147</div>
+      </div>
+      <div class="about-row">
+        <div class="about-label">Год</div>
+        <div class="about-val">2025</div>
+      </div>
+      <div class="about-row">
+        <div class="about-label">Проектный продукт</div>
+        <div class="about-val">Информационный веб-сайт по теме исследования</div>
+      </div>
+      <div class="about-row" style="border:none;margin:0;">
+        <div class="about-label">Гипотеза</div>
+        <div class="about-val" style="font-style:italic;color:rgba(245,240,232,0.6);">Глобализация и национальная идентичность не являются взаимоисключающими явлениями — их взаимодействие зависит от политики государства и гражданского общества.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>МАОУ СОШ №147 · Итоговый индивидуальный проект · Харламов А.Д. · 2025</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
